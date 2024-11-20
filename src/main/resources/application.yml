@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: hello-world
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_batch
+    username: root
+    password: 1234
+  batch:
+    jdbc:
+      initialize-schema: always
