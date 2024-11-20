@@ -19,7 +19,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 //@EnableBatchProcessing <- DefaultBatchConfiguration가 생겨서 이젠 필수 아님.
 @SpringBootApplication
-public class HelloWorldApplication implements CommandLineRunner {
+public class HelloWorldApplication /*implements CommandLineRunner*/ {
 	@Autowired
 	private Job job;
 
@@ -30,9 +30,9 @@ public class HelloWorldApplication implements CommandLineRunner {
 		SpringApplication.run(HelloWorldApplication.class, args);
 	}
 
-	@Override
+	/*@Override
 	public void run(String... args) throws Exception {
 		JobExecution jobExecution = jobLauncher.run(job, new JobParameters());
 		System.out.println("Job Execution Status: " + jobExecution.getStatus());
-	}
+	}*/
 }
