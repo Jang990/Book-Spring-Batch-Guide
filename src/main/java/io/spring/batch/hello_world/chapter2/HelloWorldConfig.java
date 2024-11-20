@@ -1,4 +1,4 @@
-package io.spring.batch.hello_world;
+package io.spring.batch.hello_world.chapter2;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
-@Configuration
+//@Configuration
 @RequiredArgsConstructor
 public class HelloWorldConfig {
     private final JobRepository jobRepository;
