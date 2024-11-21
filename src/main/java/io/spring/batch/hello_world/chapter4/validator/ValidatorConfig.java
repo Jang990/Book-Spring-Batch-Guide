@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
 
-@Configuration
+//@Configuration
 public class ValidatorConfig {
 
     // 디폴트 구성.
