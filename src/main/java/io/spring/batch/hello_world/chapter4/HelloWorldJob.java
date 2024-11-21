@@ -1,12 +1,13 @@
 package io.spring.batch.hello_world.chapter4;
 
+import io.spring.batch.hello_world.chapter4.joblistener.JobLoggerAnnotationListener;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.CompositeJobParametersValidator;
 import org.springframework.batch.core.job.builder.JobBuilder;
-import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.core.listener.JobListenerFactoryBean;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.core.step.tasklet.Tasklet;
@@ -15,8 +16,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
-
-import java.util.Arrays;
 
 @Configuration
 @RequiredArgsConstructor
@@ -33,11 +32,15 @@ public class HelloWorldJob {
     public Job job(
             Step step,
             CompositeJobParametersValidator compositeValidator,
-            DailyJobTimeStamper dailyJobTimeStamper) {
+            JobLoggerAnnotationListener jobLoggerAnnotationListener) {
         return new JobBuilder("basicJob", jobRepository)
                 .start(step)
                 .validator(compositeValidator)
-                .incrementer(dailyJobTimeStamper)
+                .incrementer(dailyJobTimeStamper())
+                //.listener(jobLoggerInterfaceListener)
+                .listener(JobListenerFactoryBean
+                        .getListener(jobLoggerAnnotationListener)
+                )
                 .build();
     }
 
