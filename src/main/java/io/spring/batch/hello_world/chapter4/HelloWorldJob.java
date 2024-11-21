@@ -6,6 +6,7 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.CompositeJobParametersValidator;
 import org.springframework.batch.core.job.builder.JobBuilder;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.core.step.tasklet.Tasklet;
@@ -24,10 +25,19 @@ public class HelloWorldJob {
     private final PlatformTransactionManager platformTransactionManager;
 
     @Bean
-    public Job job(Step step, CompositeJobParametersValidator compositeValidator) {
+    public DailyJobTimeStamper dailyJobTimeStamper() {
+        return new DailyJobTimeStamper();
+    }
+
+    @Bean
+    public Job job(
+            Step step,
+            CompositeJobParametersValidator compositeValidator,
+            DailyJobTimeStamper dailyJobTimeStamper) {
         return new JobBuilder("basicJob", jobRepository)
                 .start(step)
                 .validator(compositeValidator)
+                .incrementer(dailyJobTimeStamper)
                 .build();
     }
 

@@ -17,7 +17,7 @@ public class ValidatorConfig {
         DefaultJobParametersValidator validator = new DefaultJobParametersValidator();
 
         validator.setRequiredKeys(new String[]{"fileName"});
-        validator.setOptionalKeys(new String[]{"name"});
+        validator.setOptionalKeys(new String[]{"name", "currentDate"});
 
         return validator;
     }
