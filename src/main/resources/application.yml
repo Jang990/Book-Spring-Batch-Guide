@@ -7,5 +7,7 @@ spring:
     username: root
     password: 1234
   batch:
+    job:
+      names: jobStep
     jdbc:
       initialize-schema: always
