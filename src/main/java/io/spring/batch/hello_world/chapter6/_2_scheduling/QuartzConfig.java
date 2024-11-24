@@ -1,12 +1,13 @@
 package io.spring.batch.hello_world.chapter6._2_scheduling;
 
-import org.quartz.*;
+/*import org.quartz.*;*/
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+// gradle spring boot Quartz 추가하기
+//@Configuration
 public class QuartzConfig {
-    @Bean
+    /*@Bean
     public JobDetail quartzZobDetail() {
         return JobBuilder.newJob(BatchScheduledJob.class)
                 .storeDurably()
@@ -23,5 +24,5 @@ public class QuartzConfig {
                 .forJob(quartzZobDetail())
                 .withSchedule(scheduleBuilder)
                 .build();
-    }
+    }*/
 }
