@@ -5,13 +5,13 @@ import org.springframework.batch.core.*;
 import org.springframework.batch.core.explore.JobExplorer;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.PostMapping;
+/*import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestController;*/
 
 import java.util.Map;
 
-@RestController
+/*@RestController*/
 @RequiredArgsConstructor
 public class JobLaunchingController {
     private final JobLauncher jobLauncher;
@@ -20,15 +20,15 @@ public class JobLaunchingController {
 
     /*{"name": "job", "jobParameters" : {"foo": "bar","baz": "quix"}}*/
 
-    @PostMapping("/run") // 동일 파라미터 재시도 불가능
-    public ExitStatus runJob(@RequestBody JobLaunchRequest request) throws Exception {
+    /*@PostMapping("/run")*/ // 동일 파라미터 재시도 불가능
+    public ExitStatus runJob(/*@RequestBody*/ JobLaunchRequest request) throws Exception {
         Job job = ac.getBean(request.getName(), Job.class);
         return jobLauncher.run(job, toJobParameter(request.getJobParameters()))
                 .getExitStatus();
     }
 
-    @PostMapping("/run2") // RunIdIncrementer를 적용하여 동일 파라미터 재시도 가능
-    public ExitStatus runJob2(@RequestBody JobLaunchRequest request) throws Exception {
+    /*@PostMapping("/run2")*/ // RunIdIncrementer를 적용하여 동일 파라미터 재시도 가능
+    public ExitStatus runJob2(/*@RequestBody*/ JobLaunchRequest request) throws Exception {
         Job job = ac.getBean(request.getName(), Job.class);
 
         JobParameters requestedParameters = toJobParameter(request.getJobParameters());

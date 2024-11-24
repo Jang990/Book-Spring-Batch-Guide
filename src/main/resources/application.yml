@@ -8,6 +8,6 @@ spring:
     password: 1234
   batch:
     job:
-      names: jobStep
+      enabled: false
     jdbc:
       initialize-schema: always

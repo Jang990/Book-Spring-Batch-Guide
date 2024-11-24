@@ -1,4 +1,4 @@
-package io.spring.batch.hello_world.chapter6.web;
+package io.spring.batch.hello_world.chapter6;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
