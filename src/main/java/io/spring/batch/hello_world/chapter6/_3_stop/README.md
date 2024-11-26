@@ -5,3 +5,9 @@
 * `ImportTransactionFileStep` : 거래정보 csv 파일 읽기 -> 읽어온 거래정보 저장
 * `ApplayTransactionsStep` : 거래정보가 있는 계좌정보 불러오기 -> 거래 정보를 통해 잔액 최신화 -> DB 계좌 잔액 업데이트
 * `GeneratedAccountSummaryStep` : 거래정보가 있는 계좌정보 불러오기 -> 불러온 정보를 바탕으로 csv 파일 만들기
+
+<br>
+<br>
+
+청크 Step의 세부 내용보단 `TransactionReader` 내부 구성에 집중하기. Stop, 예외 등등<br>
+청크 Step 구성은 이후 챕터들에서 세부 내용을 다룸.

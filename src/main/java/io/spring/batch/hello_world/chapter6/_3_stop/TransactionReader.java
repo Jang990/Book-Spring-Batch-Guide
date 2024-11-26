@@ -5,14 +5,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.annotation.AfterStep;
+import org.springframework.batch.core.annotation.BeforeStep;
 import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.item.ItemStreamException;
 import org.springframework.batch.item.ItemStreamReader;
+import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.file.transform.FieldSet;
 
 @RequiredArgsConstructor
 public class TransactionReader implements ItemStreamReader<Transaction> {
     private final ItemStreamReader<FieldSet> fieldSetReader;
+    private StepExecution stepExecution;
     private int recordCount = 0;
     private int expectedRecordCount = 0;
 
@@ -25,9 +28,15 @@ public class TransactionReader implements ItemStreamReader<Transaction> {
     private Transaction process(FieldSet fieldSet) {
         if(fieldSet == null)
             return null;
-
-        if (fieldSet.getFieldCount() <= 1) {
+        /*
+        if(recordCount == 25)
+            throw new ParseException("의도하지 않은 상황"); // SpringBatch는 이 예외를 실패로 간주.
+        // 중지와는 엄연히 다르다. STOPPED가 아닌 FAILED가 저장된다.
+        */
+        if (fieldSet.getFieldCount() <= 1) { // 마지막 줄일 때.
             expectedRecordCount = fieldSet.readInt(0);
+            if(recordCount != expectedRecordCount)
+                stepExecution.setTerminateOnly();
             return null;
         }
 
@@ -39,12 +48,21 @@ public class TransactionReader implements ItemStreamReader<Transaction> {
         return result;
     }
 
+    /*
+    // 방법 1
     @AfterStep
     public ExitStatus afterStep(StepExecution stepExecution) {
         // 유효성 검사
         if(recordCount != expectedRecordCount)
             return ExitStatus.STOPPED;
         return stepExecution.getExitStatus();
+    }
+    */
+
+    // 방법 2
+    @BeforeStep
+    public void  beforeStep(StepExecution stepExecution) {
+        this.stepExecution = stepExecution;
     }
 
     @Override
