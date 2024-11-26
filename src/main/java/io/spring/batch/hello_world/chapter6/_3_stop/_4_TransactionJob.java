@@ -15,7 +15,7 @@ public class _4_TransactionJob {
     private final JobRepository jobRepository;
 
     // 파라미터
-    // transactionFile=transactionFile.csv summaryFile=file:C:\\Users\\User\\Desktop\\summaryFile1.csv
+    // transactionFile=chapter6/transactionFile.csv summaryFile=file:C:\\Users\\User\\Desktop\\summaryFile1.csv
     // 주의 : jar을 실행시키는 방식이라면 transactionFile의 마지막 줄을 변경할 때마다 새로 빌드해줘야함.
     @Bean
     public Job transactionJob(
