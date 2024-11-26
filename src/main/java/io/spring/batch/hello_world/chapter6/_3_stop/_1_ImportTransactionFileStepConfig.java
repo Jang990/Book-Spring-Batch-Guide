@@ -34,6 +34,8 @@ public class _1_ImportTransactionFileStepConfig {
     @Bean
     public Step importTransactionFileStep() {
         return new StepBuilder("importTransactionFileStep", jobRepository)
+//                .startLimit(2) // 처음 시도가 실패했다. 한 번 만 더 시도할 수 있다. (= 총 2번 시도 가능)
+                .allowStartIfComplete(true) // 스텝이 잘 완료됐더라도 같은 파라미터로 다시 실행할 수 있음.
                 .<Transaction, Transaction>chunk(100, transactionManager)
                 .reader(transactionReader()) // 거래 기록 읽어오기
                 .writer(transactionWriter(dataSource)) // 읽은 거래 기록 저장하기

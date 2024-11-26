@@ -23,6 +23,7 @@ public class _4_TransactionJob {
             Step applyTransactionsStep,
             Step generatedAccountSummaryStep) {
         return new JobBuilder("transactionJob", jobRepository)
+//                .preventRestart() // 중지, 실패해도 같은 파라미터로 다시 시작 못하게 설정.
                 .incrementer(new RunIdIncrementer())
                 .start(importTransactionFileStep)
                     .on("STOPPED").stopAndRestart(importTransactionFileStep)
