@@ -1,4 +1,4 @@
-INSERT INTO customer (id,firstName,middleInitial,lastName,address,city,state,zipCode)
+INSERT INTO ch7_customer (id,firstName,middleInitial,lastName,address,city,state,zipCode)
 VALUES
 (1,"Melinda","A","Frank","P.O. Box 290, 520 Hendrerit. Ave","Juneau","AK","99658"),
 (2,"Stone","B","Todd","Ap #365-6856 Vestibulum. St.","Gary","IN","83969"),
