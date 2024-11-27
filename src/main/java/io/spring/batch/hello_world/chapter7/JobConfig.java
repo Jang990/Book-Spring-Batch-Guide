@@ -8,6 +8,7 @@ import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +31,11 @@ public class JobConfig {
                 .<_1_Customer, _1_Customer>chunk(10, transactionManager)
                 .reader(fixedFileItemReader)
                 .writer(itemWriter())
+
+                .faultTolerant()
+                    .skip(Exception.class).skipLimit(10) // 이건 10번까지만 스킵해.
+                    .noSkip(ParseException.class) // 이건 스킵하지말고 실패처리해.
+
                 .build();
     }
 
