@@ -1,5 +1,6 @@
 package io.spring.batch.hello_world.chapter7;
 
+import io.spring.batch.hello_world.chapter7._3.CustomerFileReader;
 import io.spring.batch.hello_world.chapter7._3.TransactionFieldSetMapper;
 import io.spring.batch.hello_world.chapter7.domain.Chapter7_Customer;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,13 @@ public class _3_MultiFormatConfig {
     }
 
     @Bean
+    @StepScope
+    public CustomerFileReader customerFileReader(
+            @Value("#{jobParameter['customerFile']}") Resource inputFile) {
+        return new CustomerFileReader(customerItemReader(inputFile));
+    }
+
+    @Bean
     public PatternMatchingCompositeLineMapper lineTokenizer() {
         Map<String, LineTokenizer> lineTokenizers = createCustomLineTokenizers();
         Map<String, FieldSetMapper> fieldSetMappers = createCustomFieldMappers();
@@ -51,7 +59,7 @@ public class _3_MultiFormatConfig {
         return lineTokenizers;
     }
 
-    private static Map<String, FieldSetMapper> createCustomFieldMappers() {
+    private Map<String, FieldSetMapper> createCustomFieldMappers() {
         Map<String, FieldSetMapper> fieldSetMappers = new HashMap<>(2);
         BeanWrapperFieldSetMapper<Chapter7_Customer> customerFieldSetMapper
                 = new BeanWrapperFieldSetMapper<>();

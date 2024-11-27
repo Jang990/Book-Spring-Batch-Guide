@@ -18,4 +18,6 @@ public class Chapter7_Customer {
     private String city;
     private String state;
     private String zipCode;
+
+    private List<Chapter7_Transaction> transactions;
 }
