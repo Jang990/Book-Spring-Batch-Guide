@@ -18,7 +18,7 @@ public class _7_JdbcCursorConfig {
         return new JdbcCursorItemReaderBuilder<Chapter7_JDBC_Customer>()
                 .name("CustomerJdbcItemReader")
                 .dataSource(dataSource)
-                .sql("select * from CH7_CUSTOMER where city = ?")
+                .sql("select * from CH7_CUSTOMER")
                 .rowMapper(new CustomerRowMapper())
                 .build();
     }

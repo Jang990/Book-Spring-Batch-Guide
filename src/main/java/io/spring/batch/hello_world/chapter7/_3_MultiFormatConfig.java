@@ -20,7 +20,6 @@ import org.springframework.core.io.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
-@Configuration
 @RequiredArgsConstructor
 public class _3_MultiFormatConfig {
     @Bean
