@@ -1,4 +1,4 @@
-package io.spring.batch.hello_world.self.ch7;
+package io.spring.batch.hello_world.self.ch7.book;
 
 import lombok.Data;
 

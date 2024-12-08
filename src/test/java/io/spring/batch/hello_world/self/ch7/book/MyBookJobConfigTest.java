@@ -1,12 +1,11 @@
-package io.spring.batch.hello_world.self.ch7;
+package io.spring.batch.hello_world.self.ch7.book;
 
+import io.spring.batch.hello_world.self.ch7.book.MyBook;
+import io.spring.batch.hello_world.self.ch7.book.MyBookJobConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.item.file.FlatFileItemReader;
-import org.springframework.batch.test.JobLauncherTestUtils;
-import org.springframework.batch.test.JobRepositoryTestUtils;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 

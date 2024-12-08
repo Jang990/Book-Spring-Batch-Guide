@@ -1,4 +1,4 @@
-package io.spring.batch.hello_world.self.ch7;
+package io.spring.batch.hello_world.self.ch7.book;
 
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;
